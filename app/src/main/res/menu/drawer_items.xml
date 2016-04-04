@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/drawer_item_1"
+        android:icon="@android:drawable/ic_lock_idle_low_battery"
+        android:title="@string/drawer_title_1"/>
+
+    <item
+        android:id="@+id/drawer_item_2"
+        android:icon="@android:drawable/ic_btn_speak_now"
+        android:title="@string/drawer_title_2"/>
+
+    <item
+        android:id="@+id/drawer_item_3"
+        android:title="@string/drawer_title_3">
+
+        <menu>
+            <item
+                android:id="@+id/drawer_item_4"
+                android:icon="@android:drawable/ic_notification_clear_all"
+                android:title="@string/drawer_title_4"
+                app:actionLayout="@layout/nav_drawer_item_counter"/>
+
+            <item
+                android:id="@+id/drawer_item_5"
+                android:icon="@android:drawable/ic_input_get"
+                android:title="@string/drawer_title_5"/>
+        </menu>
+    </item>
+</menu>
