@@ -9,7 +9,8 @@
     <item
         android:id="@+id/drawer_item_2"
         android:icon="@android:drawable/ic_btn_speak_now"
-        android:title="@string/drawer_title_2"/>
+        android:title="@string/drawer_title_2"
+        app:actionLayout="@layout/nav_drawer_item_switch"/>
 
     <item
         android:id="@+id/drawer_item_3"
@@ -29,3 +30,4 @@
         </menu>
     </item>
 </menu>
+

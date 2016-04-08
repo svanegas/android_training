@@ -45,7 +45,8 @@
             <include
                 android:id="@+id/content"
                 layout="@layout/content_main"
-                app:listTitle="@{@string/main_titlelist}"/>
+                app:listTitle="@{@string/main_titlelist}"
+                android:visibility="gone"/>
 
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/fab"
@@ -62,9 +63,10 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:background="@android:color/white"
-            app:headerLayout="@layout/nav_drawer_header"
-            app:menu="@menu/drawer_items"/>
+            android:background="@color/gray"
+            app:menu="@menu/drawer_items"
+            app:headerLayout="@layout/nav_drawer_header"/>
 
     </android.support.v4.widget.DrawerLayout>
 </layout>
+

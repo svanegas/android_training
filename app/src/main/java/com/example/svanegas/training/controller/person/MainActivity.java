@@ -20,7 +20,8 @@ import android.widget.TextView;
 import com.example.svanegas.training.R;
 import com.example.svanegas.training.databinding.ActivityMainBinding;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final String SELECTED_ITEM_ID = "selected_item_id";
 
@@ -61,6 +62,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        // Sync the toggle state after onRestoreInstanceState has occurred.
+        mDrawerToggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        if (mDrawerToggle != null) mDrawerToggle.onConfigurationChanged(newConfig);
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -82,12 +96,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        if (mDrawerToggle != null) mDrawerToggle.onConfigurationChanged(newConfig);
-    }
-
     private void setupDrawer(Toolbar toolbar) {
         mNavigationView = (NavigationView) findViewById(R.id.drawer_nav_view);
         if (mNavigationView != null) mNavigationView.setNavigationItemSelectedListener(this);
@@ -98,7 +106,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 R.string.drawer_open,
                 R.string.drawer_close);
         mDrawerLayout.addDrawerListener(mDrawerToggle);
-        mDrawerToggle.syncState();
     }
 
     private void navigateTo(int destination) {
@@ -120,15 +127,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (item == null || mDrawerLayout == null || mFab == null) return false;
         item.setChecked(true);
         mDrawerSelectedItemId = item.getItemId();
-        if (item.getItemId() == R.id.drawer_item_1) {
-            mDrawerLayout.closeDrawer(GravityCompat.START);
-            Snackbar.make(mFab, "Clicked first", Snackbar.LENGTH_SHORT).show();
-            return true;
-        }
-        if (item.getItemId() == R.id.drawer_item_2) {
-            mDrawerLayout.closeDrawer(GravityCompat.START);
-            Snackbar.make(mFab, "Clicked second", Snackbar.LENGTH_SHORT).show();
-            return true;
+        switch (mDrawerSelectedItemId) {
+            case R.id.drawer_item_1:
+                mDrawerLayout.closeDrawer(GravityCompat.START);
+                Snackbar.make(mFab, "Clicked first", Snackbar.LENGTH_SHORT).show();
+                return true;
+            case R.id.drawer_item_2:
+                mDrawerLayout.closeDrawer(GravityCompat.START);
+                Snackbar.make(mFab, "Clicked second", Snackbar.LENGTH_SHORT).show();
+                return true;
         }
         return false;
     }
